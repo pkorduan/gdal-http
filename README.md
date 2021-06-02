@@ -1,14 +1,39 @@
 # gdal-http
-Docker Image mit gdal Version 3.2.2 und Service to execute ogrinfo and ogr2ogr via HTTP
+Docker Image mit gdal Version 3.2.2 und a Service to execute ogrinfo, ogr2ogr and other via HTTP.
+
+The file cmd.properties contains the toolName and the qualified path to the executable of the tool.
+
+A call to the server looks like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`http://container:8080/t/?tool=toolName&param=''`
 
 ## Run the container ##
 
+### You have to consider which resources the tool is using. ###
 
-docker create 
+to accces a postgresql database:
 
-docker run ... --name pgsql-server ... --networkname --networkalias ... pkorduan/postgis:13.1-3.1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the .pgpass has to be in the users home dir. The user within the docker container.
 
-docker run --rm --name gdal-http -h gdalcmdserver --networkname --networkalias -v /home/gisadmin/etc/postgresql/.pgpass:/root/.pgpass -v /home/gisadmin/www:/var/www/ pkorduan/http -d
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the host of the postgresql must be available within the container.
 
-or start container mit dcm from kvwmap-server
-dcm run gdal
+An exchange dir has to be set up if the tool need access to files.
+
+The parameter included in the toolParam must match the perspective inside of the container
+
+
+### Example ###
+
+docker network create kvwmap_prod
+
+docker run --name gdal-http -h gdalcmdserver -v /home/gisadmin/etc/postgresql/.pgpass:/root/.pgpass -v /home/gisadmin/www:/var/www/ pkorduan/gdal-http -d
+
+docker network connect --alias pgsql kvwmap_prod pgsql-server
+
+docker network connect --alias gdalcmdserver kvwmap_prod gdal-http
+
+docker network connect --alias gdalclient kvwmap_prod gdalclient
+
+
+`http://container:8080/t/?tool=ogr2ogr&param=-f "PostgreSQL" PG:"host='pgsql' port='5432' dbname='kvwmapsp' user='kvwmap' SCHEMAS=testschema_ralf" GMLAS:/var/www/tmp/temp.gml_2.gml -oo REMOVE_UNUSED_LAYERS=YES -oo XSD=/var/www/html/modell/xsd/5.1/XPlanung-Operationen.xsd`
+
