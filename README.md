@@ -1,5 +1,5 @@
 # gdal-http
-Docker Image mit gdal Version 3.2.2 und a Service to execute ogrinfo, ogr2ogr and other via HTTP.
+Docker Image of gdal Version 3.2.2 and a Service to execute ogrinfo, ogr2ogr and other via HTTP.
 
 The file cmd.properties contains the toolName and the qualified path to the executable of the tool.
 
@@ -11,16 +11,13 @@ A call to the server looks like this:
 
 ### You have to consider which resources the tool is using. ###
 
-to accces a postgresql database:
+To accces a postgresql database:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the .pgpass has to be in the users home dir. The user within the docker container.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The .pgpass has to be in the users home dir. The user within the docker container.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the host of the postgresql must be available within the container.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The host of the postgresql must be available within the container.
 
-An exchange dir has to be set up if the tool need access to files.
-
-The parameter included in the toolParam must match the perspective inside of the container
-
+An exchange dir has to be set up if the tool needs access to files.
 
 ### Example ###
 
