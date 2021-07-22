@@ -2,10 +2,12 @@
 Docker Image of gdal Version 3.2.2 and a Service to execute ogrinfo, ogr2ogr and other via HTTP.
 
 The file cmd.properties contains the toolName and the qualified path to the executable of the tool.
+The URL parameter toolName must contain one of the toolNames from cmd.properties and the parameter used for the application in one single string.
+The back slashes and double quotas between double quotas in param_string must be escaped by backslashes.
 
 A call to the server looks like this:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`http://container:8080/t/?tool=toolName&param=''`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`http://container:8080/t/?tool=<toolName>&param='<param_string>'`
 
 ## Run the container ##
 
@@ -34,3 +36,7 @@ docker network connect --alias gdalclient kvwmap_prod gdalclient
 
 `http://container:8080/t/?tool=ogr2ogr&param=-f "PostgreSQL" PG:"host='pgsql' port='5432' dbname='kvwmapsp' user='kvwmap' SCHEMAS=testschema_ralf" GMLAS:/var/www/tmp/temp.gml_2.gml -oo REMOVE_UNUSED_LAYERS=YES -oo XSD=/var/www/html/modell/xsd/5.1/XPlanung-Operationen.xsd`
 
+### Changelog ###
+#### 0.2.0 ####
+  * Fix bug with param_strings with double quotas between double quotas.
+  
