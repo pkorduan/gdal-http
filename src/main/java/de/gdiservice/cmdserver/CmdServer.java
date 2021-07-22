@@ -20,7 +20,7 @@ class CmdServer {
 
     static class Result {
         @JsonProperty
-        private String err;
+        private String err = "";
         @JsonProperty
         private int exitCode;
         @JsonProperty
