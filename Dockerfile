@@ -1,6 +1,6 @@
 FROM maven:3.8-jdk-11-openj9 as maven
 LABEL maintainer="Ralf Trier GDI-Service"
-LABEL version="0.2.0"
+LABEL version="0.2.1"
 
 WORKDIR /app
 COPY  src /app/src

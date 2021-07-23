@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.gdiservice</groupId>
 	<artifactId>de.gdiservice.cmdserver</artifactId>
-	<version>0.2.0</version>
+	<version>0.2.1</version>
 
 	
 	<properties>

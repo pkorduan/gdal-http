@@ -37,6 +37,8 @@ docker network connect --alias gdalclient kvwmap_prod gdalclient
 `http://container:8080/t/?tool=ogr2ogr&param=-f "PostgreSQL" PG:"host='pgsql' port='5432' dbname='kvwmapsp' user='kvwmap' SCHEMAS=testschema_ralf" GMLAS:/var/www/tmp/temp.gml_2.gml -oo REMOVE_UNUSED_LAYERS=YES -oo XSD=/var/www/html/modell/xsd/5.1/XPlanung-Operationen.xsd`
 
 ### Changelog ###
+#### 0.2.1 ####
+  * Fix multiple spaces
 #### 0.2.0 ####
   * Fix bug with param_strings with double quotas between double quotas.
   
