@@ -122,20 +122,14 @@ class CmdServer {
         server.getServerConfiguration().addHttpHandler(
                 new HttpHandler() {
                     public void service(Request request, Response response) throws Exception {
-                        System.err.println("getCharacterEncoding:\""+request.getCharacterEncoding()+"\"");                        
                         System.err.println("getDecodedRequestURI:\""+request.getDecodedRequestURI()+"\"");                        
                         System.err.println("pathInfo:\""+request.getPathInfo()+"\"");
                         System.err.println("tool:\""+request.getParameter("tool")+"\"");
                         System.err.println("param:\""+request.getParameter("param")+"\"");
                         String tool = request.getParameter("tool");
-                        for (Map.Entry<String,Charset> entry : Charset.availableCharsets().entrySet()) {
-                            request.setCharacterEncoding(entry.getKey());
-                            System.err.println(entry.getKey()+" getQueryString:\""+request.getQueryString()+"\"");
-                            System.err.println(entry.getKey()+" getQueryString:\""+request.getDecodedRequestURI()+"\"");
-                        }
                         Result result;
                         if (tool!=null) {
-                            String param = request.getParameter("param");
+                            String param = request.getParameter("param");                            
                             String cmd = properties.getProperty(request.getParameter("tool"));
                             if (cmd!=null) {
                                 String[] params = (param!=null) ? Tokenizer.getTokens(param) : null;
