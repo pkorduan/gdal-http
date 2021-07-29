@@ -131,6 +131,7 @@ class CmdServer {
                         for (Map.Entry<String,Charset> entry : Charset.availableCharsets().entrySet()) {
                             request.setCharacterEncoding(entry.getKey());
                             System.err.println(entry.getKey()+" getQueryString:\""+request.getQueryString()+"\"");
+                            System.err.println(entry.getKey()+" getQueryString:\""+request.getDecodedRequestURI()+"\"");
                         }
                         Result result;
                         if (tool!=null) {
