@@ -25,7 +25,7 @@ An exchange dir has to be set up if the tool needs access to files.
 
 docker network create kvwmap_prod
 
-docker run --name gdal-http -h gdalcmdserver -v /home/gisadmin/etc/postgresql/.pgpass:/root/.pgpass -v /home/gisadmin/www:/var/www/ pkorduan/gdal-http -d
+docker run -d --name gdal-http -h gdalcmdserver -v /home/gisadmin/networks/kvwmap_prod/pgsql/.pgpass:/root/.pgpass -v /home/gisadmin/www:/var/www/ pkorduan/gdal-http 
 
 docker network connect --alias pgsql kvwmap_prod pgsql-server
 
