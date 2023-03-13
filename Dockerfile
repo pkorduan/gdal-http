@@ -1,6 +1,6 @@
 FROM maven:3.8-jdk-11-openj9 as maven
 LABEL maintainer="Ralf Trier GDI-Service"
-LABEL version="0.3.0"
+LABEL version="0.3.1"
 
 WORKDIR /app
 COPY  src /app/src
@@ -11,7 +11,7 @@ RUN ls -al /app/target/*
 RUN ls -al /app/target/de.gdiservice.cmdserver-*.jar
 
 # https://github.com/OSGeo/gdal/blob/master/docker/README.md
-FROM osgeo/gdal:ubuntu-full-3.2.2
+FROM osgeo/gdal:ubuntu-small-3.2.2
 
 RUN apt-get update && apt-get install -y \
   default-jre \
