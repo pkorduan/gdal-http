@@ -1,6 +1,6 @@
 FROM maven:3.8-jdk-11-openj9 as maven
 LABEL maintainer="Ralf Trier GDI-Service"
-LABEL version="0.2.2"
+LABEL version="0.3.0"
 
 WORKDIR /app
 COPY  src /app/src
@@ -10,10 +10,17 @@ RUN mvn package
 RUN ls -al /app/target/*
 RUN ls -al /app/target/de.gdiservice.cmdserver-*.jar
 
+# https://github.com/OSGeo/gdal/blob/master/docker/README.md
 FROM osgeo/gdal:ubuntu-full-3.2.2
 
-RUN sed -i '/de_DE.UTF-8/s/^# //g' /etc/locale.gen && \
-    locale-gen
+RUN apt-get update && apt-get install -y \
+  default-jre \
+  locales \
+  apt-transport-https \
+  ca-certificates && \
+  update-ca-certificates
+
+RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
 ENV LANG de_DE.UTF-8  
 ENV LANGUAGE de_DE:de  
 ENV LC_ALL de_DE.UTF-8

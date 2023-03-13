@@ -25,7 +25,7 @@ An exchange dir has to be set up if the tool needs access to files.
 
 docker network create kvwmap_prod
 
-docker run -d --name gdal-http -h gdalcmdserver -v /home/gisadmin/networks/kvwmap_prod/pgsql/.pgpass:/root/.pgpass -v /home/gisadmin/www:/var/www/ pkorduan/gdal-http 
+docker run --name gdal-http -h gdalcmdserver -v /home/gisadmin/etc/postgresql/.pgpass:/root/.pgpass -v /home/gisadmin/www:/var/www/ pkorduan/gdal-http -d
 
 docker network connect --alias pgsql kvwmap_prod pgsql-server
 
@@ -37,8 +37,9 @@ docker network connect --alias gdalclient kvwmap_prod gdalclient
 `http://container:8080/t/?tool=ogr2ogr&param=-f "PostgreSQL" PG:"host='pgsql' port='5432' dbname='kvwmapsp' user='kvwmap' SCHEMAS=testschema_ralf" GMLAS:/var/www/tmp/temp.gml_2.gml -oo REMOVE_UNUSED_LAYERS=YES -oo XSD=/var/www/html/modell/xsd/5.1/XPlanung-Operationen.xsd`
 
 ### Changelog ###
-#### 0.2.1 ####
-  * Fix multiple spaces
+#### 0.3.0 ####
+  * Update CA-Certificates to accept Let's Encrypt Certificates
 #### 0.2.0 ####
   * Fix bug with param_strings with double quotas between double quotas.
-  
+#### 0.2.1 ####
+  * Fix multiple spaces  
