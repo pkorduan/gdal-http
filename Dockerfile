@@ -1,6 +1,6 @@
 FROM maven:3.8-jdk-11-openj9 as maven
 LABEL maintainer="Ralf Trier GDI-Service"
-LABEL version="0.3.1"
+LABEL version="0.4.0"
 
 WORKDIR /app
 COPY  src /app/src
@@ -32,6 +32,9 @@ COPY cmd.properties /cmdserver/classes/
 RUN ls -al /cmdserver/*
 RUN ls -al /cmdserver/lib/main.jar
 RUN unzip -l /cmdserver/lib/main.jar
+
+COPY sources/tippecanoe /usr/local/bin/tippecanoe
+COPY sources/pmtiles /usr/local/bin/pmtiles
 
 WORKDIR /cmdserver
 

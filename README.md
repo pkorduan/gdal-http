@@ -1,4 +1,4 @@
-# gdal-http
+# pkorduan/gdal-http
 Docker Image of gdal Version 3.2.2 and a Service to execute ogrinfo, ogr2ogr and other via HTTP.
 
 The file cmd.properties contains the toolName and the qualified path to the executable of the tool.
@@ -37,6 +37,8 @@ docker network connect --alias gdalclient kvwmap_prod gdalclient
 `http://container:8080/t/?tool=ogr2ogr&param=-f "PostgreSQL" PG:"host='pgsql' port='5432' dbname='kvwmapsp' user='kvwmap' SCHEMAS=testschema_ralf" GMLAS:/var/www/tmp/temp.gml_2.gml -oo REMOVE_UNUSED_LAYERS=YES -oo XSD=/var/www/html/modell/xsd/5.1/XPlanung-Operationen.xsd`
 
 ### Changelog ###
+#### 0.4.0 ####
+  * Insert tippecanoe and pmtiles to create vector tiles in format pmtiles 
 #### 0.3.1 ####
   * using smaller base-image osgeo/gdal:ubuntu-small-3.2.2
 #### 0.3.0 ####
