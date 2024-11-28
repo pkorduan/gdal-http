@@ -1,6 +1,6 @@
 FROM maven:3.8-jdk-11-openj9 as maven
 LABEL maintainer="Ralf Trier GDI-Service"
-LABEL version="0.5.0"
+LABEL version="0.6.0"
 
 WORKDIR /app
 COPY  src /app/src
@@ -12,7 +12,8 @@ RUN ls -al /app/target/de.gdiservice.cmdserver-*.jar
 
 # https://github.com/OSGeo/gdal/blob/master/docker/README.md
 #FROM osgeo/gdal:ubuntu-small-3.2.2
-FROM ghcr.io/osgeo/gdal:ubuntu-small-3.8.5
+#FROM ghcr.io/osgeo/gdal:ubuntu-small-3.8.5
+FROM ghcr.io/osgeo/gdal:ubuntu-small-3.9.2
 
 RUN apt-get update && apt-get install -y \
   default-jre \
@@ -36,6 +37,9 @@ RUN unzip -l /cmdserver/lib/main.jar
 
 COPY sources/tippecanoe /usr/local/bin/tippecanoe
 COPY sources/pmtiles /usr/local/bin/pmtiles
+
+# Programm for float calculation on shell
+RUN apt-get install -y bc
 
 WORKDIR /cmdserver
 

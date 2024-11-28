@@ -5,9 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.gdiservice</groupId>
 	<artifactId>de.gdiservice.cmdserver</artifactId>
-	<version>0.2.1</version>
+	<version>0.7.0</version>
 
-	
 	<properties>
 		<jackson-version>2.12.1</jackson-version>
 		<grizzly-verion>2.4.4</grizzly-verion>
